@@ -1,0 +1,35 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+  <h1>The Soccer DataBase</h1>
+  <h2>Matchs</h2>
+  <div>
+    {% for n in data %}
+    <div>{{n}}</div>
+    {% endfor %}
+  </div>
+
+<p><a href="/">Home</a></p>
+<p><a href="player">Player Database</a></p>
+<p><a href="team">Team Database</a></p>
+<p><a href="tournament">Tournament Database</a></p>
+<p><a href="match">Match Database</a></p>
+<p><a href="sponsor">Sponsor Database</a></p>
+<form method="POST" action="/addmatch">
+	<p>Matchid: <input type="text" name="matchid"><br>
+	Month: <input type="text" name="month"> Day: <input type="text" name="day"> Year: <input type="text" name="year"><br>
+	Stadium: <input type="text" name="stadium"><br>
+	<input type="submit" value="Add"><br></p>
+</form>
+
+</body>
+
+
+</html>

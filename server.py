@@ -13,7 +13,8 @@ import os
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
 from flask import Flask, request, render_template, g, redirect, Response
-
+import datetime
+from decimal import Decimal
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
 app = Flask(__name__, template_folder=tmpl_dir)
 
@@ -41,11 +42,12 @@ engine = create_engine(DATABASEURI)
 # Example of running queries in your database
 # Note that this will probably not work if you already have a table named 'test' in your database, containing meaningful data. This is only an example showing you how to run queries in your database using SQLAlchemy.
 #
-engine.execute("""CREATE TABLE IF NOT EXISTS test (
-  id serial,
-  name text
-);""")
-engine.execute("""INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
+
+#engine.execute("""CREATE TABLE IF NOT EXISTS test (
+#  id serial,
+#  name text
+#);""")
+#engine.execute("""INSERT INTO test(name) VALUES ('grace hopper'), ('alan turing'), ('ada lovelace');""")
 
 
 @app.before_request
@@ -149,25 +151,143 @@ def index():
   #
   return render_template("index.html", **context)
 
-#
-# This is an example of a different path.  You can see it at:
-# 
-#     localhost:8111/another
-#
-# Notice that the function name is another() rather than index()
-# The functions for each app.route need to have different names
-#
-@app.route('/another')
-def another():
-  return render_template("another.html")
-
+@app.route('/player')
+def player():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("SELECT * FROM player;")
+  player = []
+  for result in cursor:
+    player.append(result)  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = player)
+  return render_template("player.html", **context)
 
 # Example of adding new data to the database
-@app.route('/add', methods=['POST'])
-def add():
+@app.route('/addplayer', methods=['POST'])
+def addplayer():
+  day=request.form['day']
+  month=request.form['month']
+  year=request.form['year']
+
   name = request.form['name']
-  g.conn.execute('INSERT INTO test(name) VALUES (%s)', name)
-  return redirect('/')
+  nationality = request.form['nationality']
+  playerid=request.form['playerid']
+  dob=datetime.date(int(year),int(month),int(day))
+  position=request.form['position']
+  salary=Decimal(request.form['salary'])
+
+  g.conn.execute('INSERT INTO player(playerid,dob,name,position,salary,nationality) VALUES (%s,%s,%s,%s,%s,%s)',playerid,dob,name,position,salary,nationality)
+  return redirect('/player')
+
+@app.route('/team')
+def team():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("SELECT * FROM team;")
+  team = []
+  for result in cursor:
+    team.append(result)  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = team)
+  return render_template("team.html", **context)
+
+# Example of adding new data to the database
+@app.route('/addteam', methods=['POST'])
+def addteam():
+  homeground = request.form['homeground']
+  nationality = request.form['nationality']
+  teamid=request.form['teamid']
+  budget=Decimal(request.form['budget'])
+  manager=request.form['manager']
+  g.conn.execute('INSERT INTO team(teamid,homeground,manager,budget,nationality) VALUES (%s,%s,%s,%s,%s)',teamid,homeground,manager,budget,nationality)
+  return redirect('/team')
+
+@app.route('/match')
+def match():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("SELECT * FROM match;")
+  match = []
+  for result in cursor:
+    match.append(result)  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = match)
+  return render_template("match.html", **context)
+
+# Example of adding new data to the database
+@app.route('/addmatch', methods=['POST'])
+def addmatch():
+  day=request.form['day']
+  month=request.form['month']
+  year=request.form['year']
+
+  stadium = request.form['stadium']
+  matchid=request.form['matchid']
+  playdate=datetime.date(int(year),int(month),int(day))
+
+  g.conn.execute('INSERT INTO match(matchid,stadium,playdate) VALUES (%s,%s,%s)',matchid,stadium,playdate)
+  return redirect('/match')
+
+@app.route('/tournament')
+def tournament():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("SELECT * FROM tournament;")
+  tournament = []
+  for result in cursor:
+    tournament.append(result)  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = tournament)
+  return render_template("tournament.html", **context)
+
+# Example of adding new data to the database
+@app.route('/addtournament', methods=['POST'])
+def addtournament():
+  sday=request.form['sday']
+  smonth=request.form['smonth']
+  syear=request.form['syear']
+  eday=request.form['eday']
+  emonth=request.form['emonth']
+  eyear=request.form['eyear']
+
+  nationality = request.form['nationality']
+  tourid=request.form['tourid']
+  startdate=datetime.date(int(syear),int(smonth),int(sday))
+  enddate=datetime.date(int(eyear),int(emonth),int(eday))
+  prize=Decimal(request.form['prize'])
+  g.conn.execute('INSERT INTO tournament(tourid,startdate,enddate,prize,nationality) VALUES (%s,%s,%s,%s,%s)',tourid,startdate,enddate,prize,nationality)
+  return redirect('/tournament')
+
+
+@app.route('/sponsor')
+def sponsor():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("SELECT * FROM sponsor;")
+  sponsor = []
+  for result in cursor:
+    sponsor.append(result)  # can also be accessed using result[0]
+  cursor.close()
+  context = dict(data = sponsor)
+  return render_template("sponsor.html", **context)
+
+# Example of adding new data to the database
+@app.route('/addsponsor', methods=['POST'])
+def addsponsor():
+  budget = Decimal(request.form['budget'])
+  sponsorid=request.form['sponsorid']
+
+  g.conn.execute('INSERT INTO sponsor(sponsorid,budget) VALUES (%s,%s)',sponsorid,budget)
+  return redirect('/sponsor')
+
+
+
 
 
 @app.route('/login')
