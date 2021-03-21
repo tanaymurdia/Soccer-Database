@@ -1,0 +1,36 @@
+<html>
+<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
+  <style>
+    <title> Soccer Tournament DB [STDB] </title>
+    html, body, h1, h2, h3, h4 {font-family: "Lato", sans-serif} 
+    body{ 
+      font-size: 15pt;
+      
+    }
+  </style>
+
+
+<body>
+  <h1> The Top Ten Players of the League!  </h1> 
+  <div>
+	  <table style="width:100%">
+		  <tr>
+			  <th style="text-align:left">Player</th>
+			  <th style="text-align:left">Goals</th>
+		  </tr>
+		  {% for n in range(10) %}
+		  <tr>
+			  <td>{{data[n]}}</td>
+			  <td>{{data1[n]}}</td>
+		  </tr>
+		  {% endfor %}
+	  </table>
+  </div>
+
+<p><a href="/">Home</a></p>
+
+
+</body>
+
+
+</html>
