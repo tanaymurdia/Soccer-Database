@@ -110,10 +110,12 @@ def index():
   #
   # example of a database query
   #
-  cursor = g.conn.execute("SELECT name FROM player;")
+  cursor = g.conn.execute("select p.name, sum (score)as goals From matchstat m,player p where m.playerid=p.playerid Group by p.name order by goals desc;")
   names = []
+  goals=[]
   for result in cursor:
-    names.append(result['name'])  # can also be accessed using result[0]
+      names.append(result['name'])
+      goals.append(result['goals'])# can also be accessed using result[0]
   cursor.close()
 
   #
@@ -142,7 +144,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = names)
+  context = dict(data = names, data1=goals)
 
 
   #
