@@ -1,0 +1,56 @@
+<html>
+<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
+  <style>
+    <title> Soccer Tournament DB [STDB] </title>
+    html, body, h1, h2, h3, h4 {font-family: "Lato", sans-serif} 
+    body{ 
+      font-size: 15pt;
+      
+    }
+  </style>
+
+
+<body>
+	<h2> Upcoming Matches  </h2>
+  	<div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Home</th>
+                          <th style="text-align:left">Away</th>
+                          <th style="text-align:left">Date</th>
+                  </tr>
+                  {% for n in range(0) %}
+                  <tr>
+                          <td>{{data4[n]}}</td>
+                          <td>{{data5[n]}}</td>
+			  <td>{{data6[n]}}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+  <h2> Past Matches  </h2> 
+  <div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Home</th>
+                          <th style="text-align:left">Away</th>
+			  <th style="text-align:left">Date</th>
+			  <th style="text-align:left">Score</th>
+                  </tr>
+                  {% for n in range(4) %}
+                  <tr>
+			  <td>{{data[n]}}</td>
+                          <td>{{data1[n]}}</td>
+			  <td>{{data2[n]}}</td>
+			  <td>{{data3[n]}}</td>
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+<p><a href="/">Home</a></p>
+
+
+</body>
+
+
+</html>

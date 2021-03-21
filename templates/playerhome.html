@@ -11,22 +11,54 @@
 
 
 <body>
-  <h1> The Top Ten Players of the League!  </h1> 
+  <h2> Top Scorers  </h2> 
   <div>
-	  <table style="width:100%">
-		  <tr>
-			  <th style="text-align:left">Player</th>
-			  <th style="text-align:left">Goals</th>
-		  </tr>
-		  {% for n in range(10) %}
-		  <tr>
-			  <td>{{data[n]}}</td>
-			  <td>{{data1[n]}}</td>
-		  </tr>
-		  {% endfor %}
-	  </table>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Player</th>
+                          <th style="text-align:left">Goals</th>
+                  </tr>
+                  {% for n in range(10) %}
+                  <tr>
+                          <td>{{data[n]}}</td>
+                          <td>{{data1[n]}}</td>
+                  </tr>
+                  {% endfor %}
+          </table>
   </div>
 
+  <h2> Top Assists  </h2>
+  <div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Player</th>
+                          <th style="text-align:left">Assist</th>
+                  </tr>
+                  {% for n in range(10) %}
+                  <tr>
+                          <td>{{data2[n]}}</td>
+                          <td>{{data3[n]}}</td>
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+ 
+
+  <h2> Top Saves  </h2>
+  <div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Player</th>
+                          <th style="text-align:left">Saves</th>
+                  </tr>
+                  {% for n in range(10) %}
+                  <tr>
+                          <td>{{data4[n]}}</td>
+                          <td>{{data5[n]}}</td>
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
 <p><a href="/">Home</a></p>
 
 
