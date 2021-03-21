@@ -11,9 +11,19 @@
   <h1>The Soccer DataBase</h1>
   <h2>Sponsor</h2>
   <div>
-    {% for n in data %}
-    <div>{{n}}</div>
-    {% endfor %}
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Sponsorid</th>
+                          <th style="text-align:left">Budget</th>
+                  </tr>
+                  {% for n in data %}
+                  <tr>
+                          {% for m in n %}
+                                <td>{{m}}</td>
+                        {% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
   </div>
 
 <p><a href="/">Home</a></p>
