@@ -10,12 +10,26 @@
 <body>
   <h1>The Soccer DataBase</h1>
   <h2>Players</h2>
-  <div>
-    {% for n in data %}
-    <div>{{n}}</div>
-    {% endfor %}
-  </div>
 
+  <div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Playerid</th>
+                          <th style="text-align:left">DOB</th>
+			  <th style="text-align:left">Name</th>
+			  <th style="text-align:left">Salary</th>
+			  <th style="text-align:left">Position</th>
+			  <th style="text-align:left">Nationality</th>
+                  </tr>
+		  {% for n in data %}
+                  <tr>
+			  {% for m in n %}
+                          	<td>{{m}}</td>
+			{% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
 <p><a href="/">Home</a></p>
 <p><a href="player">Player Database</a></p>
 <p><a href="team">Team Database</a></p>
