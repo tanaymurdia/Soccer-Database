@@ -201,7 +201,6 @@ def matchhome():
       date1.append(result[2])# can also be accessed using result[0]
   cursor.close()
 
-  #cursor = g.conn.execute("select t.homeground, t1.homeground,m1.playdate from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid;")
   cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3, p.teamscore as c4, p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and m1.playdate<=date(now());")
   team1 = []
   team2 =[]
@@ -217,7 +216,87 @@ def matchhome():
   context = dict(data = team1,data1=team2,data2=date, data3=score, data4=team4, data5=team5, data6=date1)
   return render_template("matchhome.html", **context)
 
+@app.route('/tournamenthome')
+def tournamenthome():
+  """
+  """
+  print(request.args)
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='1' and pl.matchid=m1.matchid;")
+  team1a=[]
+  team1b=[]
+  date1=[]
+  score1=[]
+  for result in cursor:
+      team1a.append(result[0])
+      team1b.append(result[1])
+      date1.append(result[2])
+      if(result[3]==None and result[4]==None):
+          score1.append("Not Played")
+      else:
+          score1.append(str(result[3])+"-"+str(result[4]))
+  cursor.close()
 
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='2' and pl.matchid=m1.matchid;")
+  team2a=[]
+  team2b=[]
+  date2=[]
+  score2=[]
+  for result in cursor:
+      team2a.append(result[0])
+      team2b.append(result[1])
+      date2.append(result[2])
+      if(result[3]==None and result[4]==None):
+          score2.append("Not Played")
+      else:
+          score2.append(str(result[3])+"-"+str(result[4]))
+  cursor.close()
+
+  context = dict(data = team1a,data1=team1b,data2=date1, data3=score1, data4=team2a, data5=team2b, data6=date1,data7=score2)
+  return render_template("tournamenthome.html", **context)
+
+@app.route('/teamhome')
+def teamhome():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("select t.homeground,p.name,p.position,p.nationality from team t, squad s, player p where t.teamid=s.teamid and p.playerid=s.playerid;")
+  barcaplayer=[]
+  realplayer=[]
+  manutdplayer=[]
+  chelseaplayer=[]
+  for result in cursor:
+      if(result[0]=="Barcelona"):
+          barcaplayer.append(result[1:])
+      elif(result[0]=="Madrid"):
+          realplayer.append(result[1:])
+      elif(result[0]=="Manchester"):
+          manutdplayer.append(result[1:])
+      else:
+          chelseaplayer.append(result[1:])
+  cursor.close()
+  context = dict(data = barcaplayer,data1=realplayer,data2=manutdplayer, data3=chelseaplayer)
+  return render_template("teamhome.html", **context)
+
+@app.route('/sponsorhome')
+def sponsorhome():
+  """
+  """
+  print(request.args)
+  cursor = g.conn.execute("select t.homeground, sum(amountprovide) as total from team t, teamsponsor ts where t.teamid=ts.teamid group by t.homeground;")
+  total=[]
+  for result in cursor:
+        total.append(result)
+  cursor.close()
+  cursor = g.conn.execute("select t.nationality, sum(amountprovide) as total from tournament t, tournamentsponsor ts where t.tourid=ts.tourid group by t.nationality;")
+  total1=[]
+  for result in cursor:
+        total1.append(result)
+  cursor.close()
+  context = dict(data = total, data1=total1)
+  return render_template("sponsorhome.html", **context)
+
+
+#Backend Databases Adding Files
 @app.route('/player')
 
 def player():

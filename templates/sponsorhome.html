@@ -1,0 +1,57 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+  <h1>The Soccer DataBase</h1>
+  <h2>Players</h2>
+
+  <div>
+	  <h4>Team Sponsors</h4>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Team</th>
+			  <th style="text-align:left">Amount Received</th>
+                  </tr>
+		  {% for n in data %}
+                  <tr>
+			  {% for m in n %}
+                          	<td>{{m}}</td>
+			{% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+
+
+  <div>
+          <h4>Tournament Sponsors</h4>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Country</th>
+                          <th style="text-align:left">Amount Received</th>
+                  </tr>
+                  {% for n in data1 %}
+                  <tr>
+                          {% for m in n %}
+                                <td>{{m}}</td>
+                        {% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+<p><a href="/">Home</a></p>
+<p><a href="/playerhome">Player</a></p>
+<p><a href="/matchhome">Match</a></p>
+<p><a href="/tournamenthome">Tournament</a></p>
+<p><a href="/teamhome">Team</a></p>
+<p><a href="/sponsorhome">Sponsor</a></p>
+</body>
+
+
+</html>

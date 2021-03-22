@@ -1,0 +1,94 @@
+<html>
+  <style>
+    body{ 
+      font-size: 15pt;
+      font-family: arial;
+    }
+  </style>
+
+
+<body>
+  <h1>The Soccer DataBase</h1>
+  <h2>Teams</h2>
+
+
+
+  <div>
+	  <h2>Barcelona</h2>
+          <table style="width:100%">
+                  <tr>
+			  <th style="text-align:left">Name</th>
+			  <th style="text-align:left">Position</th>
+			  <th style="text-align:left">Nationality</th>
+                  </tr>
+		  {% for n in data %}
+                  <tr>
+			  {% for m in n %}
+                          	<td>{{m}}</td>
+			{% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+   <div>
+          <h2>Madrid</h2>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Name</th>
+                          <th style="text-align:left">Position</th>
+                          <th style="text-align:left">Nationality</th>
+                  </tr>
+                  {% for n in data1 %}
+                  <tr>
+                          {% for m in n %}
+                                <td>{{m}}</td>
+                        {% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+   <div>
+          <h2>Manchester United</h2>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Name</th>
+                          <th style="text-align:left">Position</th>
+                          <th style="text-align:left">Nationality</th>
+                  </tr>
+                  {% for n in data2 %}
+                  <tr>
+                          {% for m in n %}
+                                <td>{{m}}</td>
+                        {% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+
+    <div>
+          <h2>Cheslea</h2>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Name</th>
+                          <th style="text-align:left">Position</th>
+                          <th style="text-align:left">Nationality</th>
+                  </tr>
+                  {% for n in data3 %}
+                  <tr>
+                          {% for m in n %}
+                                <td>{{m}}</td>
+                        {% endfor %}
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+<p><a href="/">Home</a></p>
+<p><a href="/playerhome">Player</a></p>
+<p><a href="/matchhome">Match</a></p>
+<p><a href="/tournamenthome">Tournament</a></p>
+<p><a href="/teamhome">Team</a></p>
+<p><a href="/sponsorhome">Sponsor</a></p>
+</body>
+
+
+</html>

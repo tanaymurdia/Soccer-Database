@@ -11,24 +11,26 @@
 
 
 <body>
-	<h2> Upcoming Matches  </h2>
+	<h2> Premiere League  </h2>
   	<div>
           <table style="width:100%">
                   <tr>
                           <th style="text-align:left">Home</th>
                           <th style="text-align:left">Away</th>
                           <th style="text-align:left">Date</th>
+			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in range(0) %}
+                  {% for n in range(2) %}
                   <tr>
-                          <td>{{data4[n]}}</td>
-                          <td>{{data5[n]}}</td>
-			  <td>{{data6[n]}}
+                          <td>{{data[n]}}</td>
+                          <td>{{data1[n]}}</td>
+			  <td>{{data2[n]}}</td>
+			  <td>{{data3[n]}}</td>
                   </tr>
                   {% endfor %}
           </table>
   </div>
-  <h2> Past Matches  </h2> 
+  <h2> La Liga Santender  </h2> 
   <div>
           <table style="width:100%">
                   <tr>
@@ -37,12 +39,12 @@
 			  <th style="text-align:left">Date</th>
 			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in range(4) %}
+                  {% for n in range(2) %}
                   <tr>
-			  <td>{{data[n]}}</td>
-                          <td>{{data1[n]}}</td>
-			  <td>{{data2[n]}}</td>
-			  <td>{{data3[n]}}</td>
+			  <td>{{data4[n]}}</td>
+                          <td>{{data5[n]}}</td>
+			  <td>{{data6[n]}}</td>
+			  <td>{{data7[n]}}</td>
                   </tr>
                   {% endfor %}
           </table>
