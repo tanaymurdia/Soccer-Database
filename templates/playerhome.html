@@ -1,5 +1,5 @@
 <html>
-<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <title> Soccer Tournament DB [STDB] </title>
   <style>
     html, body, h1, h2, h3, h4 {font-family: "Lato", sans-serif} 
@@ -7,7 +7,27 @@
       font-size: 15pt;
       
     }
-  </style>
+  .topnav {
+ 	overflow: hidden;  
+   	background-color: #F0F8FF;
+  }
+  .topnav a.active {
+  	background-color: #00FFFF;  
+  	color: white;
+  }
+  .topnav a:hover {
+	color:#A52A2A;
+  	background-color: #00FFFF;
+  }
+  .topnav a {
+ 	float: left; 
+	text-align: center; 
+	padding: 14px 16px;
+	text-decoration: none; 
+	color: #00FFFF;
+	font-size: 17px;
+  }
+</style>
 
 
 <body>
@@ -59,9 +79,15 @@
                   {% endfor %}
           </table>
   </div>
-<p><a href="/">Home</a></p>
-
-
+  
+  <div class="topnav">
+	<a href="/">Home</a>
+	<a class="active"  href="/playerhome">Players</a>
+	<a href="/teamhome">Teams</a>
+	<a href="/matchhome">Matches</a>
+	<a href="/tournamenthome">The Tournament</a>
+	<a href="/sponsorhome">Sponsors</a>
+  </div>
 </body>
 
 

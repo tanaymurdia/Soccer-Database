@@ -7,6 +7,26 @@
       font-size: 15pt;
       
     }
+  .topnav {
+ 	overflow: hidden;  
+   	background-color: #F0F8FF;
+  }
+  .topnav a.active {
+  	background-color: #00FFFF;  
+  	color: white;
+  }
+  .topnav a:hover {
+	color:#A52A2A;
+  	background-color: #00FFFF;
+  }
+  .topnav a {
+ 	float: left; 
+	text-align: center; 
+	padding: 14px 16px;
+	text-decoration: none; 
+	color: #00FFFF;
+	font-size: 17px;
+  }
   </style>
 
 
@@ -27,12 +47,14 @@
 	  </table>
   </div>
 
-<p><a href="/">Home</a></p>
-<p><a href="/playerhome">Player</a></p>
-<p><a href="/matchhome">Match</a></p>
-<p><a href="/tournamenthome">Tournament</a></p>
-<p><a href="/teamhome">Team</a></p>
-<p><a href="/sponsorhome">Sponsor</a></p>
+  <div class="topnav">
+	<a class="active" href="/">Home</a>
+	<a href="/playerhome">Players</a>
+	<a href="/teamhome">Teams</a>
+	<a href="/matchhome">Matches</a>
+	<a href="/tournamenthome">The Tournament</a>
+	<a href="/sponsorhome">Sponsors</a>
+  </div>
 </body>
 
 
