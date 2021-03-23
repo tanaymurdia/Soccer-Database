@@ -1,9 +1,8 @@
 /*style sheet to import for faster load + coding times! */ 
 
-<style>
   <title> Soccer Tournament DB [STDB] </title>
       
-  body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
+  body, title,  h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
   body{
   	text-align:center; 
   	font-size: 15pt;
@@ -53,4 +52,3 @@
 	color: #00008B;
 	font-size: 17px;
   }
-</style> 
