@@ -28,13 +28,6 @@
                   {% endfor %}
           </table>
   </div>
-<p><a href="/">Home</a></p>
-<p><a href="player">Player Database</a></p>
-<p><a href="team">Team Database</a></p>
-<p><a href="tournament">Tournament Database</a></p>
-<p><a href="match">Match Database</a></p>
-<p><a href="sponsor">Sponsor Database</a></p>
-
 <form method="POST" action="/addteam">
 	<p>Teamid: <input type="text" name="teamid"><br>
 	Homeground: <input type="text" name="homeground"><br>
@@ -44,6 +37,15 @@
 	<input type="submit" value="Add"><br></p>
 </form>
 
+  
+  <div class="topnav">
+	<a href="/">Home</a>
+	<a href="/playerhome">Players</a>
+	<a href="/teamhome">Teams</a>
+	<a href="/matchhome">Matches</a>
+	<a href="/tournamenthome">The Tournament</a>
+	<a href="/sponsorhome">Sponsors</a>
+  </div>
 </body>
 
 
