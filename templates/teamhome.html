@@ -1,14 +1,20 @@
 <html>
 <link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
-  <style>
-    <title> Soccer Tournament DB [STDB] </title>
-    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif}
-    body{
-      font-size: 15pt;
 
-    }  .topnav {
+
+<style>
+      
+   <title> Soccer Tournament DB [STDB] </title>
+  body, title,  h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
+  body{
+        margin-top: 30px; 
+  	text-align:center; 
+  	font-size: 15pt;
+   	margin-bottom: 30px; 
+   }
+  .topnav {
   	top: 0; 
-	position: fixed;
+	position: fixed; 
 	width:100%; 
  	overflow: hidden;  
    	background-color: #F0F8FF;
@@ -18,7 +24,7 @@
   	color: white;
   }
   .topnav a:hover {
-	color: white;
+	color: black;
   	background-color: #00FFFF;
   }
   .topnav a {
@@ -29,9 +35,22 @@
 	color: #00008B;
 	font-size: 17px;
   }
-  
-  </style>
 
+  .botnav {
+  	bottom: 0;
+	position fixed;
+	width:100%; 
+ 	overflow: hidden;  
+   	background-color: #F0F8FF;
+  }
+  .botnav a.active {
+  	background-color: #00FFFF;  
+  	color: white;
+  }
+  .botnav a:hover {
+	color: black;
+  	background-color: #00FFFF;
+  }
 
 <body>
   <h1>The Soccer DataBase</h1>
@@ -109,7 +128,16 @@
           </table>
   </div>
 
-  <div class="topnav">
+  
+  <div class="botnav">
+	<a href="/">Home</a>
+	<a href="/player">Players Edit</a>
+	<a href="/team">Teams Edit</a>
+	<a href="/match">Matches Edit</a>
+	<a href="/tournament">Tournament Edit</a>
+	<a href="/sponsor">Sponsor Edit</a>
+  </div>
+  
 	<a href="/">Home</a>
 	<a href="/playerhome">Players</a>
 	<a class="active" href="/teamhome">Teams</a>
