@@ -2,10 +2,10 @@
 <link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
   <style>
     <title> Soccer Tournament DB [STDB] </title>
-    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
-    body{ 
+    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif}
+    body{
       font-size: 15pt;
-      
+
     }
   .topnav {
   	top: 0; 
@@ -44,12 +44,12 @@
                           <th style="text-align:left">Date</th>
 			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in range(2) %}
+                  {% for n in data %}
                   <tr>
-                          <td>{{data[n]}}</td>
-                          <td>{{data1[n]}}</td>
-			  <td>{{data2[n]}}</td>
-			  <td>{{data3[n]}}</td>
+                          <td>{{n[0]}}</td>
+                          <td>{{n[1]}}</td>
+			  <td>{{n[2]}}</td>
+			  <td>{{n[3]}}</td>
                   </tr>
                   {% endfor %}
           </table>
@@ -63,12 +63,12 @@
 			  <th style="text-align:left">Date</th>
 			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in range(2) %}
+                  {% for n in data1 %}
                   <tr>
-			  <td>{{data4[n]}}</td>
-                          <td>{{data5[n]}}</td>
-			  <td>{{data6[n]}}</td>
-			  <td>{{data7[n]}}</td>
+			  <td>{{n[0]}}</td>
+                          <td>{{n[1]}}</td>
+			  <td>{{n[2]}}</td>
+			  <td>{{n[3]}}</td>
                   </tr>
                   {% endfor %}
           </table>

@@ -160,30 +160,24 @@ def playerhome():
   """
   print(request.args)
   cursor = g.conn.execute("select p.name, sum (score)as goals From matchstat m,player p where m.playerid=p.playerid Group by p.name order by goals desc;")
-  names = []
   goals =[]
   for result in cursor:
-      names.append(result[0])
-      goals.append(result[1])# can also be accessed using result[0]
+      goals.append(result)# can also be accessed using result[0]
   cursor.close()
   cursor = g.conn.execute(";select p.name,sum(m.assist) as total from matchstat m, player p where m.playerid=p.playerid group by p.name order by total desc;")
-  names1 = []
   assists =[]
   for result in cursor:
-      names1.append(result[0])
-      assists.append(result[1])# can also be accessed using result[0]
+      assists.append(result)# can also be accessed using result[0]
   cursor.close()
   cursor = g.conn.execute(";select p.name,sum(m.save) as total from matchstat m, player p where m.playerid=p.playerid group by p.name order by total desc;")
-  names2 = []
   saves =[]
   for result in cursor:
-      names2.append(result[0])
-      saves.append(result[1])# can also be accessed using result[0]
+      saves.append(result)# can also be accessed using result[0]
   cursor.close()
 
 
 
-  context = dict(data = names,data1=goals,data2=names1,data3=assists,data4=names2,data5=saves)
+  context = dict(data=goals,data1=assists,data2=saves)
   return render_template("playerhome.html", **context)
 
 @app.route('/matchhome')
@@ -192,28 +186,23 @@ def matchhome():
   """
   print(request.args)
   cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and m1.playdate> date(now())")
-  team4 = []
-  team5 =[]
-  date1=[]
+  upcoming = []
   for result in cursor:
-      team4.append(result[0])
-      team5.append(result[1])
-      date1.append(result[2])# can also be accessed using result[0]
+      upcoming.append(result)
   cursor.close()
 
-  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3, p.teamscore as c4, p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and m1.playdate<=date(now());")
-  team1 = []
-  team2 =[]
-  date=[]
-  score=[]
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3, p.teamscore as c4, p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and m1.playdate<=date(now()) order by m1.playdate desc;")
+  latest=[]
   for result in cursor:
-      team1.append(result[0])
-      team2.append(result[1])
-      date.append(result[2])# can also be accessed using result[0]
-      score.append(str(result[3])+" - "+str(result[4]))
+      total=[]
+      total.append(result[0])
+      total.append(result[1])
+      total.append(result[2])# can also be accessed using result[0]
+      total.append(str(result[3])+" - "+str(result[4]))
+      latest.append(total);
   cursor.close()
 
-  context = dict(data = team1,data1=team2,data2=date, data3=score, data4=team4, data5=team5, data6=date1)
+  context = dict(data = upcoming, data1=latest)
   return render_template("matchhome.html", **context)
 
 @app.route('/tournamenthome')
@@ -221,37 +210,35 @@ def tournamenthome():
   """
   """
   print(request.args)
-  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='1' and pl.matchid=m1.matchid;")
-  team1a=[]
-  team1b=[]
-  date1=[]
-  score1=[]
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='1' and pl.matchid=m1.matchid order by m1.playdate desc;")
+  epl=[]
   for result in cursor:
-      team1a.append(result[0])
-      team1b.append(result[1])
-      date1.append(result[2])
+      match=[]
+      match.append(result[0])
+      match.append(result[1])
+      match.append(result[2])
       if(result[3]==None and result[4]==None):
-          score1.append("Not Played")
+          match.append("Not Played")
       else:
-          score1.append(str(result[3])+"-"+str(result[4]))
+          match.append(str(result[3])+"-"+str(result[4]))
+      epl.append(match);
   cursor.close()
 
-  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='2' and pl.matchid=m1.matchid;")
-  team2a=[]
-  team2b=[]
-  date2=[]
-  score2=[]
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate,m.c4,m.c5 from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3,p.teamscore as c4,p1.teamscore as c5 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1, playedunder pl where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and pl.tourid='2' and pl.matchid=m1.matchid order by m1.playdate desc;")
+  laliga=[]
   for result in cursor:
-      team2a.append(result[0])
-      team2b.append(result[1])
-      date2.append(result[2])
+      match=[]
+      match.append(result[0])
+      match.append(result[1])
+      match.append(result[2])
       if(result[3]==None and result[4]==None):
-          score2.append("Not Played")
+          match.append("Not Played")
       else:
-          score2.append(str(result[3])+"-"+str(result[4]))
+          match.append(str(result[3])+"-"+str(result[4]))
+      laliga.append(match);  
   cursor.close()
 
-  context = dict(data = team1a,data1=team1b,data2=date1, data3=score1, data4=team2a, data5=team2b, data6=date1,data7=score2)
+  context = dict(data = epl,data1=laliga)
   return render_template("tournamenthome.html", **context)
 
 @app.route('/teamhome')

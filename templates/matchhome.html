@@ -2,11 +2,35 @@
 <link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
   <style>
     <title> Soccer Tournament DB [STDB] </title>
-    html, body, h1, h2, h3, h4 {font-family: "Lato", sans-serif} 
-    body{ 
+    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif}
+    body{
       font-size: 15pt;
-      
-    }
+
+    }   
+    .topnav {
+        top: 0;
+        position: fixed;
+        width:100%;
+        overflow: hidden;
+        background-color: #F0F8FF;
+  }
+  .topnav a.active {
+        background-color: #00FFFF;
+        color: white;
+  }
+  .topnav a:hover {
+        color: white;
+        background-color: #00FFFF;
+  }
+  .topnav a {
+        float: left;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        color: #00008B;
+        font-size: 17px;
+  }
+
   </style>
 
 
@@ -19,11 +43,11 @@
                           <th style="text-align:left">Away</th>
                           <th style="text-align:left">Date</th>
                   </tr>
-                  {% for n in range(0) %}
+                  {% for n in data %}
                   <tr>
-                          <td>{{data4[n]}}</td>
-                          <td>{{data5[n]}}</td>
-			  <td>{{data6[n]}}
+                          <td>{{n[0]}}</td>
+                          <td>{{n[1]}}</td>
+			  <td>{{n[2]}}
                   </tr>
                   {% endfor %}
           </table>
@@ -37,22 +61,25 @@
 			  <th style="text-align:left">Date</th>
 			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in range(4) %}
+                  {% for n in data1 %}
                   <tr>
-			  <td>{{data[n]}}</td>
-                          <td>{{data1[n]}}</td>
-			  <td>{{data2[n]}}</td>
-			  <td>{{data3[n]}}</td>
+			  <td>{{n[0]}}</td>
+                          <td>{{n[1]}}</td>
+			  <td>{{n[2]}}</td>
+			  <td>{{n[3]}}</td>
                   </tr>
                   {% endfor %}
           </table>
   </div>
-<p><a href="/">Home</a></p>
-<p><a href="/playerhome">Player</a></p>
-<p><a href="/matchhome">Match</a></p>
-<p><a href="/tournamenthome">Tournament</a></p>
-<p><a href="/teamhome">Team</a></p>
-<p><a href="/sponsorhome">Sponsor</a></p>
+
+<div class="topnav">
+        <a href="/">Home</a>
+        <a href="/playerhome">Players</a>
+        <a href="/teamhome">Teams</a>
+        <a class="active" href="/matchhome">Matches</a>
+        <a href="/tournamenthome">The Tournament</a>
+        <a href="/sponsorhome">Sponsors</a>
+  </div>
 
 </body>
 

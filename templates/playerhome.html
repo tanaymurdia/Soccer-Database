@@ -1,11 +1,12 @@
 <html>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-<title> Soccer Tournament DB [STDB] </title>
+<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
   <style>
-    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
-    body{ 
+    <title> Soccer Tournament DB [STDB] </title>
+    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif}
+    body{
       font-size: 15pt;
-      }
+
+    }
       
   .topnav {
   	top: 0; 
@@ -44,8 +45,8 @@
                   </tr>
                   {% for n in range(10) %}
                   <tr>
-                          <td>{{data[n]}}</td>
-                          <td>{{data1[n]}}</td>
+                          <td>{{data[n][0]}}</td>
+                          <td>{{data[n][1]}}</td>
                   </tr>
                   {% endfor %}
           </table>
@@ -60,8 +61,8 @@
                   </tr>
                   {% for n in range(10) %}
                   <tr>
-                          <td>{{data2[n]}}</td>
-                          <td>{{data3[n]}}</td>
+                          <td>{{data1[n][0]}}</td>
+                          <td>{{data1[n][1]}}</td>
                   </tr>
                   {% endfor %}
           </table>
@@ -77,8 +78,8 @@
                   </tr>
                   {% for n in range(10) %}
                   <tr>
-                          <td>{{data4[n]}}</td>
-                          <td>{{data5[n]}}</td>
+                          <td>{{data2[n][0]}}</td>
+                          <td>{{data2[n][1]}}</td>
                   </tr>
                   {% endfor %}
           </table>
