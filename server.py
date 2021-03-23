@@ -111,13 +111,15 @@ def index():
   # example of a database query
   #
   cursor = g.conn.execute("select p.name, sum (score)as goals From matchstat m,player p where m.playerid=p.playerid Group by p.name order by goals desc;")
-  names = []
   goals=[]
   for result in cursor:
-      names.append(result['name'])
-      goals.append(result['goals'])# can also be accessed using result[0]
+      goals.append(result)# can also be accessed using result[0]
   cursor.close()
-
+  cursor=g.conn.execute("select t.homeground, t1.homeground,m1.playdate from (select p.teamid as c1, p1.teamid as c2, p.matchid as c3 from playbetween p, playbetween p1 where p.matchid=p1.matchid and p.teamid<p1.teamid) m, team t, team t1,match m1 where m.c1=t.teamid and m.c2=t1.teamid and m.c3=m1.matchid and m1.playdate> date(now())")
+  upcoming = []
+  for result in cursor:
+      upcoming.append(result)
+  cursor.close()
   #
   # Flask uses Jinja templates, which is an extension to HTML where you can
   # pass data to a template and dynamically generate HTML based on the data
@@ -144,7 +146,7 @@ def index():
   #     <div>{{n}}</div>
   #     {% endfor %}
   #
-  context = dict(data = names, data1=goals)
+  context = dict(data = goals, data1=upcoming)
 
 
   #

@@ -1,15 +1,15 @@
 <html>
-<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
   <style>
+<<<<<<< HEAD
     <title> Soccer Tournament DB [STDB] </title>
-    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif} 
-    body{ 
+    html, body, h1, h2, h3, h4 {font-family: Arial, Helvetica , sans-serif}
+    body{
       font-size: 15pt;
-      
-    }
 
+    }
   .topnav {
   	top: 0; 
+	position: fixed;
 	width:100%; 
  	overflow: hidden;  
    	background-color: #F0F8FF;
@@ -30,56 +30,63 @@
 	color: #00008B;
 	font-size: 17px;
   }
+=======
+>>>>>>> 10b227a9d330375706a638104904f3e2335c1d0a
+  
+	<link rel="stylesheet" href="https://ww.w3school.com/w3css/4/w3.ss">
   </style>
 
-<body>
-	<h1> Soccer Tournament DB [STDB] </h1> 
-	<div>
-		<img src="https://media.istockphoto.com/photos/feet-of-soccer-player-tread-on-soccer-ball-for-kickoff-in-the-stadium-picture-id992892836?k=6&m=992892836&s=612x612&w=0&h=CkqH_pw1zVZFdac7Z0x8dYt1FbBYROKJtHSFy-6PjgU=" alt="STDB">
-	</div>
 
-  <div>
+<body>
+	<h2> Premiere League  </h2>
+  	<div>
           <table style="width:100%">
-                  <h2>Upcoming Matches</h2>
                   <tr>
                           <th style="text-align:left">Home</th>
                           <th style="text-align:left">Away</th>
-			  <th style="text-align:left">Date</th>
+                          <th style="text-align:left">Date</th>
+			  <th style="text-align:left">Score</th>
                   </tr>
-                  {% for n in data1 %}
+                  {% for n in data %}
                   <tr>
                           <td>{{n[0]}}</td>
                           <td>{{n[1]}}</td>
 			  <td>{{n[2]}}</td>
+			  <td>{{n[3]}}</td>
+                  </tr>
+                  {% endfor %}
+          </table>
+  </div>
+  <h2> La Liga Santender  </h2> 
+  <div>
+          <table style="width:100%">
+                  <tr>
+                          <th style="text-align:left">Home</th>
+                          <th style="text-align:left">Away</th>
+			  <th style="text-align:left">Date</th>
+			  <th style="text-align:left">Score</th>
+                  </tr>
+                  {% for n in data1 %}
+                  <tr>
+			  <td>{{n[0]}}</td>
+                          <td>{{n[1]}}</td>
+			  <td>{{n[2]}}</td>
+			  <td>{{n[3]}}</td>
                   </tr>
                   {% endfor %}
           </table>
   </div>
 
-  <div>
-	  <table style="width:100%">
-		  <h2>Top Scorers</h2>
-		  <tr>
-			  <th style="text-align:left">Player</th>
-			  <th style="text-align:left">Goals</th>
-		  </tr>
-		  {% for n in range(10) %}
-		  <tr>
-			  <td>{{data[n][0]}}</td>
-			  <td>{{data[n][1]}}</td>
-		  </tr>
-		  {% endfor %}
-	  </table>
-  </div>
 
   <div class="topnav">
-	<a class="active" href="/">Home</a>
+	<a href="/">Home</a>
 	<a href="/playerhome">Players</a>
 	<a href="/teamhome">Teams</a>
 	<a href="/matchhome">Matches</a>
-	<a href="/tournamenthome">The Tournament</a>
+	<a class="active" href="/tournamenthome">The Tournament</a>
 	<a href="/sponsorhome">Sponsors</a>
   </div>
+
 </body>
 
 
