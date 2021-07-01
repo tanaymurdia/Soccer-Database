@@ -1,12 +1,8 @@
 
 """
-Columbia's COMS W4111.001 Introduction to Databases
-Example Webserver
 To run locally:
     python server.py
 Go to http://localhost:8111 in your browser.
-A debugger such as "pdb" may be helpful for debugging.
-Read about it online.
 """
 import os
   # accessible as a variable in index.html:
@@ -30,7 +26,7 @@ app = Flask(__name__, template_folder=tmpl_dir)
 #
 #     DATABASEURI = "postgresql://zy2431:123123@34.73.36.248/project1"
 #
-DATABASEURI = "postgresql://tm3149:513888@34.73.36.248/project1" # Modify this with your own credentials you received from Joseph!
+DATABASEURI = "postgresql://tm3149:513888@34.73.36.248/project1" 
 
 
 #
